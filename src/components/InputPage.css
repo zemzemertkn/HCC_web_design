@@ -114,8 +114,8 @@
 }
 
 .upload-area {
-  border: 2px dashed #edf0f4;/* BT / ULTRASON ALANININ KENAR ÇİZGİSİ */
-  background-color: #ffffff;/* BT / ULTRASON ALANININ ARKA PLANI */
+  border: 2px dashed #edf0f4;/* MR / ULTRASON ALANININ KENAR ÇİZGİSİ */
+  background-color: #ffffff;/* MR / ULTRASON ALANININ ARKA PLANI */
   padding: 40px;
   text-align: center;
   border-radius: 12px;
@@ -126,7 +126,7 @@
 }
 
 .upload-area:hover {
-  background-color: #e0f2fe;/* BT / ULTRASON ALANINA HOVER (ÜZERİNE GELİNİNCE) RENGİ */
+  background-color: #e0f2fe;/* MR / ULTRASON ALANINA HOVER (ÜZERİNE GELİNİNCE) RENGİ */
 }
 
 .upload-area div {
@@ -139,12 +139,12 @@
 .upload-area strong {
   font-size: 15px;
   font-weight: 600;
-  color: #1e3a8a;/* "BT Görüntüsü Yükle" GİBİ KALIN YAZILARIN RENGİ */
+  color: #1e3a8a;/* "MR Görüntüsü Yükle" GİBİ KALIN YAZILARIN RENGİ */
 }
 
 .upload-area small {
   font-size: 11px;
-  color: #8e97a7; /* BT / ULTRASON ALANINDAKİ AÇIKLAMA YAZISI (gri) */
+  color: #8e97a7; /* MR / ULTRASON ALANINDAKİ AÇIKLAMA YAZISI (gri) */
 }
 
 input[type="file"] {

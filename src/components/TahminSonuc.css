@@ -60,3 +60,30 @@
   display: inline-block;
   margin-left: 6px;
 }
+.pdf-indir-btn {
+  position: absolute;
+  top: 20px;  /* Sayfanın üst kısmından 20px aşağıda */
+  right: 20px; /* Sayfanın sağ kısmından 20px içeride */
+  background-color: #dc2626; /* Kırmızı PDF butonu arka planı */
+  color: white; /* Butonun yazı rengi beyaz */
+  border: none; /* Kenarlık yok */
+  padding: 10px 16px; /* Butonun içindeki yazı etrafında boşluk */
+  border-radius: 8px; /* Köşe yuvarlama */
+  font-size: 14px; /* Yazı büyüklüğü */
+  font-weight: 500; /* Orta kalınlıkta yazı */
+  cursor: pointer; /* Butona tıklanabilir imleç */
+  display: flex; /* İçindeki ikon ve yazıyı yan yana dizmek için */
+  align-items: center; /* İkon ve yazıyı dikey olarak ortalamak için */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Butona hafif gölge */
+  transition: background-color 0.3s ease; /* Renk değişiminin yumuşak olması için geçiş efekti */
+  z-index: 9999; /* Diğer öğelerin önünde olmasını sağlamak için */
+}
+
+.pdf-indir-btn:hover {
+  background-color: #b91c1c; /* Butona hover (üzerine gelindiğinde) kırmızı ton değişikliği */
+}
+
+.pdf-indir-btn svg {
+  margin-right: 6px; /* İkon ile yazı arasına biraz boşluk bırak */
+}
+

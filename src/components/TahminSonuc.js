@@ -1,3 +1,4 @@
+import PdfButton from "./PdfButton";  
 import React from "react";
 import "./TahminSonuc.css";
 import { useLocation } from "react-router-dom";
@@ -16,6 +17,8 @@ const TahminSonuc = () => {
 
   return (
     <div className="tahmin-container">
+      <PdfButton elementId="tahmin-container" hasta={hasta} />
+
       <h2 className="baslik"> HCC Risk Tahmini</h2>
 
       <div className="kart hasta-karti">

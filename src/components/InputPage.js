@@ -155,7 +155,7 @@ const InputPage = () => {
 
       {/* BT Yükleme */}
       <div className="bt-section" style={{ marginTop: "40px" }}>
-        <h3>Bilgisayarlı Tomografi (BT) Yükleme</h3>
+        <h3>MR Görüntüsü Yükleme</h3>
         <label htmlFor="bt-upload" className="upload-area">
           {btImage ? (
             <img
@@ -165,7 +165,7 @@ const InputPage = () => {
             />
           ) : (
             <div>
-              <strong>BT Görüntüsü Yükle</strong>
+              <strong>MR Görüntüsü Yükle</strong>
               <small>Görüntüyü buraya sürükleyin veya gözatın</small>
             </div>
           )}
