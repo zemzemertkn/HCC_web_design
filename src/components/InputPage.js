@@ -21,6 +21,10 @@ const InputPage = () => {
 
   const [btImage, setBtImage] = useState(null);
   const [ultrasonImage, setUltrasonImage] = useState(null);
+  
+  // YENİ EKLENDİ: API'ye göndereceğimiz asıl dosyayı saklamak için
+  const [ultrasonDosyasi, setUltrasonDosyasi] = useState(null); 
+  
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -32,13 +36,52 @@ const InputPage = () => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      if (type === "bt") setBtImage(imageUrl);
-      else if (type === "ultrason") setUltrasonImage(imageUrl);
+      if (type === "bt") {
+        setBtImage(imageUrl);
+      } else if (type === "ultrason") {
+        setUltrasonImage(imageUrl); // Bu satır önizleme için
+        // GÜNCELLENDİ: Sadece önizleme değil, dosyanın kendisini de hafızaya alıyoruz
+        setUltrasonDosyasi(file); 
+      }
     }
   };
 
-  const handleCalculate = () => {
-    navigate("/sonuc");
+  // GÜNCELLENDİ: API'ye bağlanıp sonucu sonuç sayfasına yönlendiren fonksiyon
+  const handleCalculate = async () => {
+    if (!ultrasonDosyasi) {
+        alert("Lütfen önce bir Ultrason Görüntüsü yükleyin.");
+        return;
+    }
+
+    // API'ye göndermek için FormData oluştur
+    const formData = new FormData();
+    formData.append("dosya", ultrasonDosyasi);
+
+    try {
+        // Python API'mize isteği gönderiyoruz
+        const response = await fetch('http://127.0.0.1:8000/tahmin_et', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const data = await response.json();
+
+        if (data.hata) {
+            alert(`API Hatası: ${data.hata}`);
+        } else {
+            // API'den gelen sonucu ve form verilerini birleştirip sonuç sayfasına gönder
+            const sonuclar = {
+                ...form, // Hasta verileri
+                tahmin: data.tahmin_edilen_evre // Modelin tahmini
+            };
+            
+            console.log("Sonuç sayfasına gönderilen veri:", sonuclar);
+            navigate("/sonuc", { state: { sonuclar: sonuclar } });
+        }
+    } catch (error) {
+        alert("API sunucusuna bağlanırken bir hata oluştu.");
+        console.error("API Hatası:", error);
+    }
   };
 
   return (
@@ -159,57 +202,49 @@ const InputPage = () => {
       </div>
 
       {/* Görüntü Yükleme Alanları */}
-      
-<div className="image-section-wrapper" style={{ marginTop: "40px" }}>
-  <div className="bt-section">
-    <h3>Ultrason Görüntüsü Yükleme</h3>
-    <label htmlFor="ultrason-upload" className="upload-area">
-      {ultrasonImage ? (
-        <img
-          src={ultrasonImage}
-          alt="Ultrason Görüntüsü"
-        />
-      ) : (
-        <div>
-          <strong>Ultrason Görüntüsü Yükle</strong>
-          <small>Görüntüyü buraya sürükleyin veya gözatın</small>
+      <div className="image-section-wrapper" style={{ marginTop: "40px" }}>
+        <div className="bt-section">
+          <h3>Ultrason Görüntüsü Yükleme</h3>
+          <label htmlFor="ultrason-upload" className="upload-area">
+            {ultrasonImage ? (
+              <img src={ultrasonImage} alt="Ultrason Görüntüsü" />
+            ) : (
+              <div>
+                <strong>Ultrason Görüntüsü Yükle</strong>
+                <small>Görüntüyü buraya sürükleyin veya gözatın</small>
+              </div>
+            )}
+          </label>
+          <input
+            type="file"
+            id="ultrason-upload"
+            accept="image/*"
+            onChange={(e) => handleFileChange(e, "ultrason")}
+            style={{ display: "none" }}
+          />
         </div>
-      )}
-    </label>
-    <input
-      type="file"
-      id="ultrason-upload"
-      accept="image/*"
-      onChange={(e) => handleFileChange(e, "ultrason")}
-      style={{ display: "none" }}
-    />
-  </div>
 
-  <div className="bt-section">
-    <h3>MR Görüntüsü Yükleme</h3>
-    <label htmlFor="bt-upload" className="upload-area">
-      {btImage ? (
-        <img
-          src={btImage}
-          alt="BT Görüntüsü"
-        />
-      ) : (
-        <div>
-          <strong>MR Görüntüsü Yükle</strong>
-          <small>Görüntüyü buraya sürükleyin veya gözatın</small>
+        <div className="bt-section">
+          <h3>MR Görüntüsü Yükleme</h3>
+          <label htmlFor="bt-upload" className="upload-area">
+            {btImage ? (
+              <img src={btImage} alt="BT Görüntüsü" />
+            ) : (
+              <div>
+                <strong>MR Görüntüsü Yükle</strong>
+                <small>Görüntüyü buraya sürükleyin veya gözatın</small>
+              </div>
+            )}
+          </label>
+          <input
+            type="file"
+            id="bt-upload"
+            accept="image/*"
+            onChange={(e) => handleFileChange(e, "bt")}
+            style={{ display: "none" }}
+          />
         </div>
-      )}
-    </label>
-    <input
-      type="file"
-      id="bt-upload"
-      accept="image/*"
-      onChange={(e) => handleFileChange(e, "bt")}
-      style={{ display: "none" }}
-    />
-  </div>
-</div>
-
+      </div>
 
       {/* Hesapla Butonu */}
       <div className="button-container" style={{ marginTop: "40px" }}>
