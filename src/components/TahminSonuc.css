@@ -1,3 +1,5 @@
+/* src/components/TahminSonuc.css (GÜNCEL VERSİYON) */
+
 .tahmin-container {
   max-width: 850px;
   margin: 40px auto;
@@ -51,6 +53,8 @@
   background-color: #eef2ff;
   border-left-color: #6366f1;
 }
+
+/* Mevcut .risk-kutusu stiliniz */
 .risk-kutusu {
   background-color: #fee2e2; /* açık kırmızı kutu rengi */
   color: #b91c1c;             /* koyu kırmızı yazı */
@@ -60,30 +64,87 @@
   display: inline-block;
   margin-left: 6px;
 }
+
+/* Yeni risk kutusu renkleri */
+.risk-kutusu.risk-dusuk {
+  background-color: #d4edda; /* Açık yeşil */
+  color: #155724; /* Koyu yeşil */
+}
+
+.risk-kutusu.risk-orta {
+  background-color: #fff3cd; /* Açık sarı */
+  color: #856404; /* Koyu sarı */
+}
+
+.risk-kutusu.risk-yuksek {
+  background-color: #f8d7da; /* Açık kırmızı */
+  color: #721c24; /* Koyu kırmızı */
+}
+
+/* Yeni MRI uyarı stili */
+.mri-uyari {
+    background-color: #e0f2fe; /* Açık mavi */
+    color: #0d47a1; /* Koyu mavi */
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    border-left: 5px solid #2196f3;
+}
+
+/* Yeni PDF İndir butonu stili */
 .pdf-indir-btn {
   position: absolute;
-  top: 20px;  /* Sayfanın üst kısmından 20px aşağıda */
-  right: 20px; /* Sayfanın sağ kısmından 20px içeride */
-  background-color: #dc2626; /* Kırmızı PDF butonu arka planı */
-  color: white; /* Butonun yazı rengi beyaz */
-  border: none; /* Kenarlık yok */
-  padding: 10px 16px; /* Butonun içindeki yazı etrafında boşluk */
-  border-radius: 8px; /* Köşe yuvarlama */
-  font-size: 14px; /* Yazı büyüklüğü */
-  font-weight: 500; /* Orta kalınlıkta yazı */
-  cursor: pointer; /* Butona tıklanabilir imleç */
-  display: flex; /* İçindeki ikon ve yazıyı yan yana dizmek için */
-  align-items: center; /* İkon ve yazıyı dikey olarak ortalamak için */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Butona hafif gölge */
-  transition: background-color 0.3s ease; /* Renk değişiminin yumuşak olması için geçiş efekti */
-  z-index: 9999; /* Diğer öğelerin önünde olmasını sağlamak için */
+  top: 20px;
+  right: 20px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  z-index: 9999;
 }
 
 .pdf-indir-btn:hover {
-  background-color: #b91c1c; /* Butona hover (üzerine gelindiğinde) kırmızı ton değişikliği */
+  background-color: #b91c1c;
 }
 
 .pdf-indir-btn svg {
-  margin-right: 6px; /* İkon ile yazı arasına biraz boşluk bırak */
+  margin-right: 6px;
 }
 
+/* LLM yanıtı ve öneriler için ek stil */
+.llm-yanit {
+    white-space: pre-wrap; /* Satır sonlarını korur ve boşlukları korur */
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.final-oneriler {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #e8f5e9; /* Yeşilimsi ton */
+    border-left: 5px solid #4caf50; /* Yeşil kenarlık */
+    border-radius: 8px;
+    font-weight: bold;
+    color: #1b5e20;
+    font-size: 1.05em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+.final-oneriler .svg-inline--fa { /* İkonlar için stil */
+    min-width: 24px;
+    text-align: center;
+}
